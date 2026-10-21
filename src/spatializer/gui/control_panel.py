@@ -191,6 +191,10 @@ class ControlPanel(ttk.LabelFrame):
     def set_loading(self) -> None:
         self._loading = True
         self._start_btn.configure(text="読み込み中…")
+        self._stop_btn.configure(state="disabled")
+        self._dataset_cb.configure(state="disabled")
+        self._block_cb.configure(state="disabled")
+        self._rescan_btn.configure(state="disabled")
         self._update_start_state()
 
     def set_status(self, text: str) -> None:
