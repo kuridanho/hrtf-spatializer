@@ -1,39 +1,18 @@
 #!/usr/bin/env python3
-"""
-Spatializer — HRTF リアルタイム空間音響アプリ
+"""Source-tree entry point.
 
-Usage:
-    cd /Users/rikuhonda/Documents/Project/Spatializer
-    spatializer_app/.venv/bin/python -m spatializer_app.main
+Prefer ``python -m spatializer`` after ``pip install -e .``.  This shim keeps
+``python main.py`` working directly from a checkout.
 """
+
+from __future__ import annotations
 
 import sys
-import os
+from pathlib import Path
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 
-import tkinter as tk
-from tkinter import ttk
-
-from spatializer_app.gui.main_window import MainWindow
-
-DATASET_BASE = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "..", "dataset")
-)
-
-
-def main() -> None:
-    root = tk.Tk()
-    root.tk.call("tk", "scaling", 2.0)   # HiDPI / Retina 対応
-
-    # macOS ネイティブ外観に近づける
-    style = ttk.Style(root)
-    if "aqua" in style.theme_names():
-        style.theme_use("aqua")
-
-    MainWindow(root, dataset_base=DATASET_BASE)
-    root.mainloop()
-
+from spatializer.__main__ import main  # noqa: E402
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

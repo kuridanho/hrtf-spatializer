@@ -1,6 +1,0 @@
-numpy>=1.24
-scipy>=1.10
-sounddevice>=0.4.6
-soundfile>=0.12
-# GUI: tkinter (built into Python 3.x)
-# macOS: brew install python-tk@3.14  が必要

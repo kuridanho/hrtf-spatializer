@@ -1,0 +1,17 @@
+[build-system]
+requires = ["maturin>=1.6,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "upols-core"
+version = "0.1.0"
+description = "Rust accelerator for the Spatializer UPOLS hot path"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Riku Honda", email = "kuridanho@gmail.com" }]
+
+[project.urls]
+Repository = "https://github.com/kuridanho/hrtf-spatializer"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]

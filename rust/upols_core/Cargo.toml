@@ -2,6 +2,9 @@
 name = "upols_core"
 version = "0.1.0"
 edition = "2021"
+description = "Rust accelerator for the Spatializer UPOLS hot path"
+license = "MIT"
+repository = "https://github.com/kuridanho/hrtf-spatializer"
 
 [lib]
 name = "upols_core"
@@ -17,3 +20,4 @@ rayon = "1"
 [profile.release]
 opt-level = 3
 lto = "thin"
+codegen-units = 1
