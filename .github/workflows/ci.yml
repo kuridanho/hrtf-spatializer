@@ -81,3 +81,18 @@ jobs:
 
       - name: Run DSP tests with the Rust backend
         run: pytest -q tests/test_upols.py
+
+
+  native:
+    name: native macOS app
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Test native DSP core
+        run: cargo test --release --manifest-path rust/spatializer-core/Cargo.toml
+
+      - name: Build Swift menu bar app
+        run: ./macos/build.sh

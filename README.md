@@ -22,6 +22,34 @@ or AirPods.
 > (or point `--dataset-dir` / `SPATIALIZER_DATASET_DIR` at one).  See
 > [docs/dataset.md](docs/dataset.md) for the exact format.
 
+
+> **Native macOS menu bar app (recommended)**: the `macos/` directory contains a
+> SwiftUI app that uses **Core Audio Process Tap** and a Rust DSP core, so
+> **BlackHole is not required**. See [macos/README.md](macos/README.md) to build
+> and run it. The Python implementation below remains available for
+> headless/offline use.
+
+## ネイティブ版（macOS メニューバー）
+
+- 常駐メニューバー、Dock 非表示、設定ウィンドウ付き
+- Core Audio Process Tap でシステム音声を直接キャプチャ（BlackHole 不要）
+- 独自の private aggregate device で、キャプチャ中だけ元のシステム出力をミュート
+- Rust 製リアルタイム DSP（21方向 UPOLS、64〜512 frames）
+- 48 kHz・64 frames で推定 **約2.7 ms**、128 frames で **約5.3 ms**（この環境での推定値）
+- 有線 / USB DAC / 内蔵出力を推奨。AirPods は Bluetooth 固有の遅延があり、低遅延目標の対象外
+
+```bash
+./macos/build.sh --run
+```
+
+初回起動時に **システム音声録音** の許可を与え、設定ウィンドウから HRTF フォルダと出力デバイスを選択してください。詳細は [macos/README.md](macos/README.md) を参照してください。
+
+## Python 版（レガシー / ヘッドレス）
+
+以下は従来の Python + BlackHole 実装です。CLI・オフライン処理・DSP の検証用として残しています。
+
+---
+
 ## 特徴
 
 - **21 方向の HRTF をリアルタイム畳み込み** — 左右 10° 刻み + 正面。入力をパン係数で分配し、左右耳を平均してバイノーラル化。

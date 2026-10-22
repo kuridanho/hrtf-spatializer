@@ -7,6 +7,8 @@ dist/
 .eggs/
 .venv*/
 venv/
+.cargo-home/
+.build-cache/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
